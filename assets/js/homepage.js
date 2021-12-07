@@ -18,7 +18,6 @@ var getUserRepos = function(user) {
       }
     })
     .catch(function(error) {
-      // Notice this `.catch()` getting chained onto the end of the `.then()` method
       alert("Unable to connect to GitHub");
     });
     };
@@ -34,6 +33,9 @@ var getUserRepos = function(user) {
 
       if (username) {
           getUserRepos(username);
+
+          //clear old content
+          repoContainerEl.textContent = '';
           nameInputEl.value = "";
       } else {
           alert("Please enter a GitHub username");
@@ -70,11 +72,11 @@ if (repos.length === 0) {
 
         //check if current repo has issues or not
         if (repos[i].open_issues_count > 0) {
-            statusEl.innerHTML = 
-            "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + "issue(s)";
-        } else {
+            statusEl.innerHTML =
+              "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
+          } else {
             statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-        }
+          }
 
         //append to container
         repoEl.appendChild(statusEl);
