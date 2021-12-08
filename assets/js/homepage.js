@@ -14,7 +14,7 @@ var formSubmitHandler = function (event) {
         getUserRepos(username);
 
         //clear old content
-        repoContainerEl.textContent = '';
+        repoContainerEl.textContent = "";
         nameInputEl.value = "";
     } else {
         alert("Please enter a GitHub username");
@@ -22,6 +22,7 @@ var formSubmitHandler = function (event) {
 };
 
 var buttonClickHandler = function (event) {
+    event.preventDefault();
     // get the language attribute from the clicked element
     var language = event.target.getAttribute("data-language");
 
@@ -55,9 +56,10 @@ var getUserRepos = function (user) {
 };
 
 var getFeaturedRepos = function(language) {
+    console.log(language);
     // format the github api url
     var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
-    console.log(language);
+    
     // make a get request to url
     fetch(apiUrl).then(function(response) {
       // request was successful
